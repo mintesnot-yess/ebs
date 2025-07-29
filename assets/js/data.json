@@ -1,0 +1,91 @@
+{
+    "Shows": [
+        {
+            "Title": "በስንቱ - BESNITU",
+            "Description": "በስንቱ የተሰኘው የአማርኛ ፊልም ነው። ይህ ፊልም በአማርኛ ቋንቋ የተዘጋጀ እና በጣም የተወደደ ፊልም ነው።",
+            "Image": "assets/images/besntu-poster1.jpg",
+            "Sample-Video": "assets/videos/besntu.mp4",
+            "Date": "SUN 03AM & WEN 02AM",
+            "Link": "https://www.youtube.com/watch?v=t0lYyT3bPe4&pp=ygUHYmVzaW50dQ%3D%3D",
+            "Type": "Sitcom",
+            "Producer-name": "ebs",
+            "Producer-Image": ""
+        },
+        {
+            "Title": "ሀያ–ሰላሳ | 20–30",
+            "Description": "ሀያ–ሰላሳ የተሰኘው የአማርኛ ሀያ–ሰላሳ ፕሮግራም ነው። ይህ ሀያ–ሰላሳ በአማርኛ ቋንቋ የተዘጋጀ ነው።",
+            "Image": "assets/images/20-30.png",
+            "Sample-Video": "assets/videos/what-new.mp4",
+            "Date": "MON 01:00AM-02:30AM | WEN-01:00AM-02:30AM",
+            "Link": "https://www.youtube.com/watch?v=t0lYyT3bPe4&pp=ygUHYmVzaW50dQ%3D%3D",
+            "Type": "Entertainment",
+            "Producer-name": "ebs",
+            "Producer-Image": ""
+        },
+        {
+            "Title": "እሁድን በኢቢኤስ ",
+            "Description": "እሁድን በኢቢኤስ::",
+            "Image": "assets/images/ehudn.jpg",
+            "Sample-Video": "assets/videos/what-new.mp4",
+            "Date": "MON 01:00AM-02:30AM | WEN-01:00AM-02:30AM",
+            "Link": "https://www.youtube.com/watch?v=t0lYyT3bPe4&pp=ygUHYmVzaW50dQ%3D%3D",
+            "Type": "Entertainment",
+            "Producer-name": "ebs",
+            "Producer-Image": ""
+        },
+        {
+            "Title": "ዞሮ መውጫዬ",
+            "Description": "ዞሮ መውጫዬ የተሰኘው የአማርኛ ፊልም ነው። ይህ ፊልም በአማርኛ ቋንቋ የተዘጋጀ እና በጣም የተወደደ ፊልም ነው።",
+            "Image": "assets/images/zoro.jpg",
+            "Sample-Video": "assets/videos/besntu.mp4",
+            "Date": "SUN 03AM & WEN 02AM",
+            "Link": "https://www.youtube.com/watch?v=t0lYyT3bPe4&pp=ygUHYmVzaW50dQ%3D%3D",
+            "Type": "Sitcom",
+            "Producer-name": "ebs",
+            "Producer-Image": ""
+        },
+        {
+            "Title": "Tech Talk With Solomon",
+            "Description": "TechTalk With Solomon weekly technology TV show on EBS embarks on informing ",
+            "Image": "assets/images/TechTalk.jpg",
+            "Sample-Video": "assets/videos/TechTalk.jpg",
+            "Date": "SUN 03AM & WEN 02AM",
+            "Link": "https://www.youtube.com/watch?v=t0lYyT3bPe4&pp=ygUHYmVzaW50dQ%3D%3D",
+            "Type": "Technology TV show",
+            "Producer-name": "ebs",
+            "Producer-Image": ""
+        }
+    ],
+    "Movies": [
+        {
+            "Title": "",
+            "Description": "",
+            "Image": "",
+            "Sample-Video": "",
+            "Date": "",
+            "Links": ""
+        },
+        {
+            "Title": "",
+            "Description": "",
+            "Image": "",
+            "Sample-Video": "",
+            "Date": "",
+            "Links": ""
+        }
+    ],
+    "Channel": [
+        {
+            "Name": "",
+            "Description": "",
+            "Image": "",
+            "Installation": ""
+        },
+        {
+            "Name": "",
+            "Description": "",
+            "Image": "",
+            "Installation": ""
+        }
+    ]
+}

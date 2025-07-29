@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horror Series Slider</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            color: #fff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            gap: 20px;
+        }
+
+        .poster {
+            background-color: #111;
+            border-radius: 8px;
+            padding: 20px;
+            min-width: 200px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .poster::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff0000, #8b0000);
+        }
+
+        .streamo-label {
+            color: #ff0000;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 1.5rem;
+            margin: 15px 0;
+            color: #fff;
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 15px;
+        }
+
+        .btn {
+            background-color: transparent;
+            color: #ff0000;
+            border: 2px solid #ff0000;
+            padding: 8px 25px;
+            cursor: pointer;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background-color: #ff0000;
+            color: #000;
+        }
+
+        @media (max-width: 768px) {
+            .poster {
+                min-width: 160px;
+                height: 250px;
+                padding: 15px;
+            }
+
+            .title {
+                font-size: 1.2rem;
+            }
+
+            .streamo-label {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Horror Series</h1>
+
+    <div class="slider-container">
+        <div class="slider">
+            <!-- Posters will be added by JavaScript -->
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn prev">← Previous</button>
+        <button class="btn next">Next →</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slider = document.querySelector('.slider');
+            const prevBtn = document.querySelector('.prev');
+            const nextBtn = document.querySelector('.next');
+
+            // Series data - matches your screenshot
+            const series = [
+                { title: "IN THE DITCH" },
+                { title: "REVENANT DEVIL" },
+                { title: "HEADLESS" },
+                { title: "MUNDERSTROBE" },
+                { title: "CITY THE BOOKS" },
+                { title: "REVENANT DEVIL" }
+            ];
+
+            // How many posters to show at once
+            const postersVisible = 4;
+            let currentPosition = 0;
+
+            // Create posters
+            function createPosters() {
+                slider.innerHTML = '';
+
+                series.forEach((item, index) => {
+                    const poster = document.createElement('div');
+                    poster.className = 'poster';
+                    poster.innerHTML = `
+                        <div class="streamo-label">A STREAMO ORIGINAL POSTER</div>
+                        <div class="title">${item.title}</div>
+                    `;
+                    slider.appendChild(poster);
+                });
+            }
+
+            // Update slider position
+            function updateSlider() {
+                const posterWidth = document.querySelector('.poster').offsetWidth;
+                const gap = 20;
+                const moveX = currentPosition * (posterWidth + gap);
+                slider.style.transform = `translateX(-${moveX}px)`;
+            }
+
+            // Next posters
+            function nextPosters() {
+                if (currentPosition < series.length - postersVisible) {
+                    currentPosition++;
+                    updateSlider();
+                }
+            }
+
+            // Previous posters
+            function prevPosters() {
+                if (currentPosition > 0) {
+                    currentPosition--;
+                    updateSlider();
+                }
+            }
+
+            // Event listeners
+            nextBtn.addEventListener('click', nextPosters);
+            prevBtn.addEventListener('click', prevPosters);
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'ArrowRight') {
+                    nextPosters();
+                } else if (e.key === 'ArrowLeft') {
+                    prevPosters();
+                }
+            });
+
+            // Handle window resize
+            window.addEventListener('resize', updateSlider);
+
+            // Initialize slider
+            createPosters();
+        });
+    </script>
+</body>
+
+</html>

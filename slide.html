@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horror Series Slider</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            color: #ff0000;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .poster {
+            background-color: #111;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 0 10px;
+            text-align: center;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+        }
+
+        .streamo-label {
+            color: #ff0000;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .title {
+            font-size: 1.8rem;
+            margin: 20px 0;
+            color: #fff;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #cc0000;
+            transform: scale(1.05);
+        }
+
+        .indicators {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #333;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .indicator.active {
+            background-color: #ff0000;
+        }
+
+        @media (max-width: 768px) {
+            .poster {
+                height: 300px;
+                padding: 15px;
+            }
+
+            .title {
+                font-size: 1.4rem;
+            }
+
+            .streamo-label {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Horror Series</h1>
+
+    <div class="slider-container">
+        <div class="slider">
+            <!-- Slides will be added dynamically by JavaScript -->
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn prev">Previous</button>
+        <button class="btn next">Next</button>
+    </div>
+
+    <div class="indicators">
+        <!-- Indicators will be added dynamically by JavaScript -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slider = document.querySelector('.slider');
+            const prevBtn = document.querySelector('.prev');
+            const nextBtn = document.querySelector('.next');
+            const indicatorsContainer = document.querySelector('.indicators');
+
+            // Series data
+            const series = [
+                { title: "IN THE DITCH" },
+                { title: "REVENANT DEVIL" },
+                { title: "HEADLESS" },
+                { title: "MUNDERSTROBE" },
+                { title: "CITY THE BOOKS" },
+                { title: "REVENANT DEVIL" }
+            ];
+
+            let currentSlide = 0;
+
+            // Create slides
+            function createSlides() {
+                slider.innerHTML = '';
+                indicatorsContainer.innerHTML = '';
+
+                series.forEach((item, index) => {
+                    // Create slide
+                    const slide = document.createElement('div');
+                    slide.className = 'slide';
+
+                    // Create poster
+                    const poster = document.createElement('div');
+                    poster.className = 'poster';
+                    poster.innerHTML = `
+                        <div class="streamo-label">A STREAMO ORIGINAL POSTER</div>
+                        <div class="title">${item.title}</div>
+                    `;
+
+                    slide.appendChild(poster);
+                    slider.appendChild(slide);
+
+                    // Create indicator
+                    const indicator = document.createElement('div');
+                    indicator.className = 'indicator';
+                    if (index === 0) indicator.classList.add('active');
+                    indicator.addEventListener('click', () => goToSlide(index));
+                    indicatorsContainer.appendChild(indicator);
+                });
+            }
+
+            // Go to specific slide
+            function goToSlide(index) {
+                currentSlide = index;
+                updateSlider();
+            }
+
+            // Update slider position and active indicator
+            function updateSlider() {
+                slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+                // Update indicators
+                const indicators = document.querySelectorAll('.indicator');
+                indicators.forEach((indicator, index) => {
+                    if (index === currentSlide) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+            }
+
+            // Next slide
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % series.length;
+                updateSlider();
+            }
+
+            // Previous slide
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + series.length) % series.length;
+                updateSlider();
+            }
+
+            // Event listeners
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'ArrowRight') {
+                    nextSlide();
+                } else if (e.key === 'ArrowLeft') {
+                    prevSlide();
+                }
+            });
+
+            // Initialize slider
+            createSlides();
+
+            // Auto-advance (optional)
+            // setInterval(nextSlide, 5000);
+        });
+    </script>
+</body>
+
+</html>
